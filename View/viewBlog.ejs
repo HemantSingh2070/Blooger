@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('./Partials/head') %>
+    <title>Home</title>
+</head>
+<body>
+<%- include('./Partials/nav') %>
+
+<div class="container mt-4">
+    <h1 class="text-center"><%= blog.title %></h1>
+    <img class="img-fluid m-4 rounded mx-auto d-block" width="300px" src="<%= blog.titleImg%>" alt="">
+    <div class="text-center text-wrap"><%-blog.content%></div>
+    <div class="container mb-4 text-end">
+    - by
+    <img src="<%=blog.writtenBy.profilePhotoURL%>" class="rounded " width="40" alt="" srcset="">
+    <%= blog.writtenBy.name %>
+    <form action="/blog<%=`/delete/${blog._id}` %>" method="delete">
+    <% if (user.name == blog.writtenBy.name) { %>
+        <button type="submit" class="btn btn-danger m-4">Delete</button>
+    <% } %>
+    </form>
+    </div>
+</div>
+
+
+
+<%- include('./Partials/scripts') %>
+
+</body>
+</html>
